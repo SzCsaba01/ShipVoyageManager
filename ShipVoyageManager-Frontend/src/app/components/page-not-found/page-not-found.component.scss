@@ -1,0 +1,21 @@
+.not-found-container {
+    text-align: center;
+    padding: 4rem 2rem;
+    max-width: 30rem;
+    margin: 5rem auto;
+    border-radius: 1rem;
+    background-color: #fafafa;
+    box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.05);
+  
+    .icon {
+      font-size: 4rem;
+      color: #e53935;
+      margin-bottom: 1rem;
+    }
+  
+    button {
+      font-size: 1rem;
+      padding: 0.75rem 2rem;
+    }
+  }
+  

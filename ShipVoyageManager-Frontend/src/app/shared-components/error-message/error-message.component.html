@@ -1,0 +1,9 @@
+<div *ngIf="isVisible" class="alert-container">
+    <div class="alert alert-success" *ngIf="type === 'success'">
+      {{ message }}
+    </div>
+    <div class="alert alert-danger" *ngIf="type === 'error'">
+      <p *ngIf="message != ''">{{ message }}</p>
+      <p *ngIf="message == ''"> Sorry! An Error occured!</p>
+    </div>
+  </div>

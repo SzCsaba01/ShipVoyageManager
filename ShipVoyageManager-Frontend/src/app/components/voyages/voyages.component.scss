@@ -1,0 +1,24 @@
+.voyages-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100vh;
+
+    .items-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+}
+
+.button-container {
+    margin-bottom: 2rem;
+}
+
+.clickable .mat-mdc-row:hover .mat-mdc-cell {
+    background-color: #D3D3D3;
+    cursor: pointer;
+  }
+

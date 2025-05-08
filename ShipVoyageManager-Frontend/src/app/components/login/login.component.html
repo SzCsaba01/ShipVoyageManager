@@ -1,0 +1,26 @@
+<div class="form-container">
+  <h1 class="form-title">Login</h1>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
+    <mat-form-field class="full-width">
+      <mat-label>Email or Username</mat-label>
+      <input matInput formControlName="userCredential"/>
+      <mat-error *ngIf="userCredential.invalid && userCredential.touched">This field is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password"/>
+      <mat-error *ngIf="password.invalid && password.touched">Password is required</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button  class="form-button" [disabled]="loginForm.invalid">
+      Log In
+    </button>
+  </form>
+
+  <div class="form-links">
+    <a routerLink="/forgot-password">Forgot password?</a>
+    <a routerLink="/registration">Don't have an account?</a>
+  </div>
+</div>

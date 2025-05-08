@@ -1,0 +1,40 @@
+<div class="modal-overlay">
+    <div class="modal-content">
+      <h2>Ship Details</h2>
+  
+      <form [formGroup]="shipForm">
+        <mat-form-field class="full-width">
+          <mat-label>Ship Name</mat-label>
+          <input matInput formControlName="name" />
+        </mat-form-field>
+  
+        <mat-form-field class="full-width">
+          <mat-label>Max Speed</mat-label>
+          <input matInput formControlName="maxSpeed" />
+        </mat-form-field>
+      </form>
+  
+      <h3>Voyages</h3>
+      <div *ngIf="ship.voyages.length > 0; else noVoyages">
+        <mat-list>
+          <mat-list-item *ngFor="let v of ship.voyages">
+            <div class="voyage-details">
+              <strong>{{ v.departurePortName }}</strong> ➡ <strong>{{ v.arrivalPortName }}</strong><br />
+              <small>{{ v.startTime | date: 'short' }} - {{ v.endTime | date: 'short' }}</small>
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </div>
+      <ng-template #noVoyages>
+        <p>No voyages for this ship.</p>
+      </ng-template>
+  
+      <div class="modal-actions">
+        <button *ngIf="isAdmin" mat-raised-button class="form-button" (click)="onSave(shipForm.value)" [disabled]="shipForm.invalid">
+          Save
+        </button>
+        <button mat-button class="form-button" (click)="onClose()">Close</button>
+      </div>
+    </div>
+  </div>
+  

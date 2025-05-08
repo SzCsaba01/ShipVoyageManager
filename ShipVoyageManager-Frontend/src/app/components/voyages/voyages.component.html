@@ -1,0 +1,78 @@
+<div class="voyages-page-container">
+    <div class="items-container">
+      <div class="container">
+        <div class="button-container">
+          <button *ngIf="isAdmin" mat-raised-button class="add-voyage-button" (click)="onAddVoyageClicked()">Add Voyage</button>
+        </div>
+  
+        <div class="clickable table-container">
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+            <ng-container matColumnDef="shipName">
+              <th mat-header-cell *matHeaderCellDef>Ship</th>
+              <td mat-cell *matCellDef="let voyage">{{ voyage.shipName }}</td>
+            </ng-container>
+  
+            <ng-container matColumnDef="departureDate">
+              <th mat-header-cell *matHeaderCellDef>Departure</th>
+              <td mat-cell *matCellDef="let voyage">{{ voyage.startTime | date: 'short' }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="departurePortName">
+                <th mat-header-cell *matHeaderCellDef>From</th>
+                <td mat-cell *matCellDef="let voyage">{{ voyage.departurePortName }}</td>
+            </ng-container>
+  
+            <ng-container matColumnDef="arrivalDate">
+              <th mat-header-cell *matHeaderCellDef>Arrival</th>
+              <td mat-cell *matCellDef="let voyage">{{ voyage.endTime | date: 'short' }}</td>
+            </ng-container>
+  
+            <ng-container matColumnDef="arrivalPortName">
+              <th mat-header-cell *matHeaderCellDef>To</th>
+              <td mat-cell *matCellDef="let voyage">{{ voyage.arrivalPortName }}</td>
+            </ng-container>
+  
+            <ng-container *ngIf="isAdmin" matColumnDef="delete">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let voyage">
+                <button mat-button (click)="onDeleteClicked(voyage); $event.stopPropagation()">Delete</button>
+              </td>
+            </ng-container>
+  
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row (click)="onRowClicked(row)" *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+  
+        <mat-paginator
+          [pageSizeOptions]="pageSizeOptions"
+          [pageSize]="pageSize"
+          [pageIndex]="page"
+          [length]="totalVoyages"
+          (page)="onPageChange($event)">
+        </mat-paginator>
+      </div>
+    </div>
+</div>
+
+<app-confirmation-modal
+    *ngIf="isDeleteVoyageModalOpen"
+    [title]="'Delete Voyage'"
+    [message]="'Are you sure you want to delete this voyage?'"
+    (confirm)="onDeleteConfirmed()"
+    (cancel)="onCloseDeleteModal()"
+></app-confirmation-modal>
+
+<app-add-voyage-modal
+    *ngIf="isAddVoyageModalOpen"
+    (onAddVoyage)="onAddVoyage()"
+    (onCloseModal)="onCloseAddVoyageModal()"
+></app-add-voyage-modal>
+
+<app-edit-voyage-modal
+    *ngIf="isEditVoyageModalOpen"
+    [voyage]="selectedVoyage"
+    (onEditVoyage)="onEditVoyage()"
+    (onCloseModal)="onCloseEditVoyageModal()"
+></app-edit-voyage-modal>

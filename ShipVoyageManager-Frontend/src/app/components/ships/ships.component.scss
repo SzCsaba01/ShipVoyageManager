@@ -1,0 +1,30 @@
+.ships-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100vh;
+
+    .items-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+}
+
+.filter-form {
+    display: flex;
+    gap: 2rem;
+    align-items: center;;
+
+    .add-port-button {
+        margin-bottom: 2.3rem;
+    }
+}
+
+.clickable .mat-mdc-row:hover .mat-mdc-cell {
+    background-color: #D3D3D3;
+    cursor: pointer;
+  }
+

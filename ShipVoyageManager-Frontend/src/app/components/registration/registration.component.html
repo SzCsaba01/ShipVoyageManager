@@ -1,0 +1,68 @@
+<div class="form-container">
+  <h1 class="form-title">Create an Account</h1>
+
+  <form [formGroup]="registrationForm" (ngSubmit)="onRegister(registrationForm.value)">
+    <mat-form-field class="full-width">
+      <mat-label>Username</mat-label>
+      <input matInput formControlName="username" />
+      <mat-error *ngIf="username.hasError('required')">Username is required</mat-error>
+      <mat-error *ngIf="username.hasError('minlength')">
+        Username length must be greater than {{username.errors?.['minlength']?.['requiredLength']}} characters
+      </mat-error>
+      <mat-error *ngIf="username.hasError('maxlength')">
+        Username length must be less than {{username.errors?.['maxlength']?.['requiredLength']}} characters
+      </mat-error>
+      <mat-error *ngIf="username.hasError('pattern')">
+        Username can contain only letters and numbers
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email" />
+      <mat-error *ngIf="email.hasError('required')">Email is required</mat-error>
+      <mat-error *ngIf="email.hasError('email')">Invalid email address</mat-error>
+      <mat-error *ngIf="email.hasError('maxlength')">
+        Email length must be less than {{email.errors?.['maxlength']?.['requiredLength']}} characters
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" />
+      <mat-error *ngIf="password.hasError('required')">Password is required</mat-error>
+      <mat-error *ngIf="password.hasError('minlength')">
+        Password length must be greater than {{password.errors?.['minlength']?.['requiredLength']}} characters
+      </mat-error>
+      <mat-error *ngIf="password.hasError('maxlength')">
+        Password length must be less than {{password.errors?.['maxlength']?.['requiredLength']}} characters
+      </mat-error>
+      <mat-error *ngIf="password.hasError('pattern')">
+        Password must include upper, lower case letters, a number, and a special character
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Repeat Password</mat-label>
+      <input matInput type="password" formControlName="repeatPassword" />
+      <mat-error *ngIf="repeatPassword.hasError('required')">Repeat Password is required</mat-error>
+      <mat-error *ngIf="repeatPassword.hasError('minlength')">
+        Repeat password length must be greater than {{repeatPassword.errors?.['minlength']?.['requiredLength']}} characters
+      </mat-error>
+      <mat-error *ngIf="repeatPassword.hasError('maxlength')">
+        Password length must be less than {{repeatPassword.errors?.['maxlength']?.['requiredLength']}} characters
+      </mat-error>
+      <mat-error *ngIf="repeatPassword.hasError('pattern')">
+        Password must include upper, lower case letters, a number, and a special character
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button class="form-button" type="submit" [disabled]="registrationForm.invalid">
+      Register
+    </button>
+  </form>
+
+  <div class="form-links">
+    <p>Already have an account? <a routerLink="/login">Login here</a></p>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<div class="modal-overlay">
+    <div class="modal-content">
+      <h2>Voyage Details</h2>
+  
+      <form [formGroup]="voyageForm">
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Start Time</mat-label>
+          <input matInput [matDatepicker]="startPicker" [max]="endTime.value" formControlName="startTime" />
+          <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+          <mat-datepicker #startPicker></mat-datepicker>
+        </mat-form-field>
+  
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>End Time</mat-label>
+          <input matInput [matDatepicker]="endPicker" [min]="startTime.value" formControlName="endTime" />
+          <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+          <mat-datepicker #endPicker></mat-datepicker>
+        </mat-form-field>
+  
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Ship</mat-label>
+          <mat-select formControlName="shipId">
+            <mat-option *ngFor="let s of ships" [value]="s.id">{{ s.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Departure Port</mat-label>
+          <mat-select formControlName="departurePortId">
+            <mat-option *ngFor="let p of ports" [value]="p.id">{{ p.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Arrival Port</mat-label>
+          <mat-select formControlName="arrivalPortId">
+            <mat-option *ngFor="let p of ports" [value]="p.id">{{ p.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+  
+      <div class="voyage-details">
+        <h3>Summary</h3>
+        <p><strong>From:</strong> {{ voyage.departurePortName }}</p>
+        <p><strong>To:</strong> {{ voyage.arrivalPortName }}</p>
+        <p><strong>Ship:</strong> {{ voyage.shipName }}</p>
+        <p><strong>Time:</strong> {{ voyage.startTime | date: 'short' }} - {{ voyage.endTime | date: 'short' }}</p>
+      </div>
+  
+      <div class="modal-actions">
+        <button
+          *ngIf="isAdmin"
+          mat-raised-button
+          class="form-button"
+          (click)="onSave(voyageForm.value)"
+          [disabled]="voyageForm.invalid"
+        >
+          Save
+        </button>
+        <button mat-button class="form-button" (click)="onClose()">Close</button>
+      </div>
+    </div>
+  </div>
+  

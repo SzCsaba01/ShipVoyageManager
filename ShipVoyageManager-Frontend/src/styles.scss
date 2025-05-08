@@ -1,0 +1,101 @@
+@use '@angular/material' as mat;
+
+html {
+  @include mat.theme((
+    color: (
+      theme-type: light,
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.form-container {
+  max-width: 30rem;
+  margin: 5rem auto;
+  padding: 2rem;
+  border-radius: 1rem;
+  background-color: #f4f6f8;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.form-button {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.8rem 0;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.4rem;
+}
+
+.form-links {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &.centered {
+      justify-content: center;
+  }
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.table-container {
+  max-height: 20rem;
+  overflow: auto;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #f4f6f8;
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 30%;
+  max-height: 35rem;
+  overflow-y: auto;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-top: 1rem;
+}

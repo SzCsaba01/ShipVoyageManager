@@ -1,0 +1,62 @@
+<div class="modal-overlay">
+    <div class="modal-content">
+      <h2>Add New Voyage</h2>
+  
+      <form [formGroup]="addVoyageForm" (ngSubmit)="onSubmit(addVoyageForm.value)">
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Start Date</mat-label>
+          <input matInput [matDatepicker]="startPicker" [max]="endTime.value" formControlName="startTime"/>
+          <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+          <mat-datepicker #startPicker></mat-datepicker>
+          <mat-error *ngIf="startTime.hasError('required')">Start date is required</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>End Date</mat-label>
+          <input matInput [matDatepicker]="endPicker" [min]="startTime.value" formControlName="endTime"/>
+          <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+          <mat-datepicker #endPicker></mat-datepicker>
+          <mat-error *ngIf="endTime.hasError('required')">End date is required</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Available Ship</mat-label>
+          <mat-select formControlName="shipId">
+            <mat-option *ngFor="let s of ships" [value]="s.id">{{ s.name }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="shipId.hasError('required')">Ship is required</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Departure Port</mat-label>
+          <mat-select formControlName="departurePortId">
+            <mat-option *ngFor="let port of ports" [value]="port.id">{{ port.name }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="departurePortId.hasError('required')">Departure port is required</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Arrival Port</mat-label>
+          <mat-select formControlName="arrivalPortId">
+            <mat-option *ngFor="let port of ports" [value]="port.id">{{ port.name }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="arrivalPortId.hasError('required')">Arrival port is required</mat-error>
+        </mat-form-field>
+
+        <div class="error-message" *ngIf="addVoyageForm.errors?.['samePort'] && (arrivalPortId.touched || departurePortId.touched)">
+          <mat-error>Arrival and departure ports must be different</mat-error>
+        </div>
+        
+  
+        <div class="modal-actions">
+          <button mat-flat-button type="submit" [disabled]="addVoyageForm.invalid" class="form-button">
+            Add
+          </button>
+          <button mat-button type="button" (click)="onClose()" class="form-button">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

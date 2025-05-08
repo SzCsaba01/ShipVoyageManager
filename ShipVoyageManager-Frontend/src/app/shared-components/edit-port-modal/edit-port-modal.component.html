@@ -1,0 +1,43 @@
+<div class="modal-overlay">
+    <div class="modal-content">
+      <h2>Port Details</h2>
+  
+      <form [formGroup]="portForm">
+        <mat-form-field class="full-width">
+          <mat-label>Port Name</mat-label>
+          <input matInput formControlName="name" />
+        </mat-form-field>
+  
+        <mat-form-field class="full-width">
+          <mat-label>Country</mat-label>
+          <input matInput formControlName="countryName" />
+        </mat-form-field>
+      </form>
+  
+      <h3>Departing Voyages</h3>
+      <mat-list *ngIf="port.departingVoyages?.length; else noDeparting">
+        <mat-list-item *ngFor="let v of port.departingVoyages">
+          <strong>{{ v.shipName }} to {{ v.arrivalPortName }} </strong>
+          <br /> ({{ v.startTime | date:'short' }} - {{ v.endTime | date:'short' }})
+        </mat-list-item>
+      </mat-list>
+      <ng-template #noDeparting><p>No departing voyages.</p></ng-template>
+  
+      <h3>Arriving Voyages</h3>
+      <mat-list *ngIf="port.arrivingVoyages?.length; else noArriving">
+        <mat-list-item *ngFor="let v of port.arrivingVoyages">
+          <strong>{{ v.shipName }} from {{ v.departurePortName }}</strong>
+          <br /> ({{ v.startTime | date:'short' }} - {{ v.endTime | date:'short' }})
+        </mat-list-item>
+      </mat-list>
+      <ng-template #noArriving><p>No arriving voyages.</p></ng-template>
+  
+      <div class="modal-actions">
+        <button *ngIf="isAdmin" mat-raised-button class="form-button" (click)="onSave(portForm.value)" [disabled]="portForm.invalid">
+          Save
+        </button>
+        <button mat-button class="form-button" (click)="onClose()">Close</button>
+      </div>
+    </div>
+</div>
+  

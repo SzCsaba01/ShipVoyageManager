@@ -1,0 +1,15 @@
+<mat-toolbar>
+    <span class="clickable" (click)="navigateTo('/home')">Dashboard</span>
+  
+    <span class="spacer"></span>
+  
+    <ng-container *ngIf="userRole$ | async as role">
+        <button *ngIf="role === userRoles.admin" mat-button (click)="navigateTo('/home/manage-users')">Manage Users</button>
+    </ng-container>
+    <button mat-button (click)="navigateTo('/home/ships')">Ships</button>
+    <button mat-button (click)="navigateTo('/home/voyages')">Voyages</button>
+    <button mat-button (click)="navigateTo('/home/ports')">Ports</button>
+    <button mat-button (click)="navigateTo('/home/visited-countries')">Visited Countries</button>
+    <button mat-button (click)="onLogout()">Logout</button>
+  </mat-toolbar>
+  

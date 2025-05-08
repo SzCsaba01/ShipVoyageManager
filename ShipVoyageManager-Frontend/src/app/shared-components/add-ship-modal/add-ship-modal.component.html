@@ -1,0 +1,29 @@
+<div class="modal-overlay">
+  <div class="modal-content">
+    <h2>Add New Ship</h2>
+
+    <form [formGroup]="addShipForm" (ngSubmit)="onSubmit(addShipForm.value)">
+      <mat-form-field class="full-width">
+        <mat-label>Ship Name</mat-label>
+        <input matInput formControlName="name" />
+        <mat-error *ngIf="addShipForm.get('name')?.hasError('required')">Name is required</mat-error>
+        <mat-error *ngIf="addShipForm.get('name')?.hasError('maxlength')">Max 100 characters</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Max Speed</mat-label>
+        <input matInput type="number" formControlName="maxSpeed" />
+        <mat-error *ngIf="addShipForm.get('maxSpeed')?.hasError('required')">Country is required</mat-error>
+        <mat-error *ngIf="addShipForm.get('maxSpeed')?.hasError('min')">The max speed should be a positive number</mat-error>
+      </mat-form-field>
+
+      <div class="modal-actions">
+        <button mat-flat-button type="submit" [disabled]="addShipForm.invalid" class="form-button">
+          Add
+        </button>
+        <button mat-button type="button" (click)="onClose()" class="form-button">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+    
