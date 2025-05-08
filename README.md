@@ -18,7 +18,7 @@ The Ship Voyage Management Application is a web-based system built using **Angul
 ### Data Display
 
 - **Tables**: 
-  - Ships, voyages, ports, and visited countries are displayed in tables.
+  - Ships, voyages, and ports are displayed in tables.
   
 - **Visited Countries Line Chart**:
   - A line chart displays the number of new countries visited each month over the last year, using **Chart.js**.
