@@ -23,6 +23,25 @@ The Ship Voyage Management Application is a web-based system built using **Angul
 - **Visited Countries Line Chart**:
   - A line chart displays the number of new countries visited each month over the last year, using **Chart.js**.
 
+## Error Handling
+
+- **Error Handling Middleware**:
+  - The backend includes an **error handling middleware** that processes errors and generates custom error messages, which are then sent to the frontend.
+  
+- **Frontend Interceptor**:
+  - The frontend has an **interceptor** that listens for error messages from the backend and displays them in a **toast message bar** for the user.
+  
+## Guards and State Management
+
+- **Auth Guard**:
+  - The frontend uses an **Auth Guard** to protect routes from unauthorized access.
+  
+- **Role Guard**:
+  - The **Role Guard** ensures that only users with the appropriate roles can access specific routes and actions (e.g., only admins can add, update, or delete data).
+
+- **NgRx Store**:
+  - The application uses **NgRx** to manage the state, including storing the user's roles, which are then utilized by the guards to determine route access.
+
 ## Setup Instructions
 
 ### Backend Setup
@@ -65,4 +84,3 @@ The Ship Voyage Management Application is a web-based system built using **Angul
 ## Unit Tests
 
 The application includes unit tests for all services and repository methods. These tests ensure that the business logic and database interactions function correctly.
-
