@@ -27,6 +27,8 @@ public class VoyageService : IVoyageService
     {
         var voyageEntity = _mapper.Map<VoyageEntity>(voyageDto);
 
+        voyageEntity.VoyageDate = DateTime.UtcNow;
+
         await _voyageRepository.AddVoyageAsync(voyageEntity);
     }
 

@@ -27,6 +27,6 @@ export class VoyageService {
   }
 
   public deleteVoyage(id: Guid): Observable<void> {
-    return this.http.delete<void>(`${environment.apiUrl}/${this._url}/DeleteVoyage?id=${id}`);
+    return this.http.delete<void>(`${environment.apiUrl}/${this._url}/DeleteVoyageById?id=${id}`);
   }
 }

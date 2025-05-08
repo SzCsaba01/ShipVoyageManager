@@ -31,6 +31,6 @@ export class PortService {
   }
 
   public deletePort(id: Guid): Observable<void> {
-    return this.http.delete<void>(`${environment.apiUrl}/${this._url}/DeletePort?id=${id}`);
+    return this.http.delete<void>(`${environment.apiUrl}/${this._url}/DeletePortById?id=${id}`);
   }
 }
